@@ -94,7 +94,7 @@ def update_twitter():
 
 # Have the Twitter bot update every five minutes for two days
 days = 0
-while days < 2:
+while (days < 2):
 print("Updating Twitter")
 
     # Update the twitter
