@@ -25,7 +25,7 @@ api = tweepy.API(auth, parser=tweepy.parsers.JSONParser())
 
 def update_twitter():
 
-    mentions = api.search(q="@PlotBot Analyze:")
+    mentions = api.search(q="@mon_toledo15 Analyze:")
     #print(mentions)
     words = []
     # Lists to hold sentiments
@@ -41,7 +41,7 @@ def update_twitter():
     words = command.split("Analyze:")
     target_user = words[1].strip()
         
-    for x in range(8):
+    for x in range(25):
         try:
             public_tweets=api.user_timeline(target_user,page=x)
         # Loop through tweets
@@ -92,16 +92,12 @@ def update_twitter():
             continue
 
 
-# Have the Twitter bot update every five minutes for two days
-days = 0
-while (days < 2):
-print("Updating Twitter")
+# Have the Twitter bot update every five minutes
+
+#print("Updating Twitter")
 
     # Update the twitter
-    update_twitter()
+update_twitter()
 
     # Wait 5 minutes
-    time.sleep(300)
-
-    # Update day counter
-    days += 1
+time.sleep(300)
