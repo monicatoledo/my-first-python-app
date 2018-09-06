@@ -5,6 +5,8 @@ import time
 import datetime
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use("Agg")
 
 # Uncomment the following to test the script locally:
 #from config import consumer_key, consumer_secret, access_token, access_token_secret
@@ -37,6 +39,7 @@ def update_twitter():
     # Variable for tweets ago
     counter=0
     tweets_ago=[]
+    name=mentions["statuses"][0]["user_mentions"]["name"]
     command = mentions["statuses"][0]["text"]
     words = command.split("Analyze:")
     target_user = words[1].strip()
@@ -74,7 +77,7 @@ def update_twitter():
     
     plt.savefig("plot1.png")
     api.update_with_media(
-            "plot1.png", "Tweet Polarity " + target_user
+            "plot1.png", "Tweet Polarity " + target_user + "requested by @" + name
         )
 
     # Grab Self Tweets
@@ -93,11 +96,11 @@ def update_twitter():
 
 
 # Have the Twitter bot update every five minutes
-
-#print("Updating Twitter")
+while(True):
+    #print("Updating Twitter")
 
     # Update the twitter
-update_twitter()
+    update_twitter()
 
     # Wait 5 minutes
-time.sleep(300)
+    time.sleep(300)
