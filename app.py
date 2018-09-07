@@ -4,9 +4,10 @@ import tweepy
 import time
 import datetime
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use("Agg")
+
+from matplotlib import pyplot as ply
 
 # Uncomment the following to test the script locally:
 #from config import consumer_key, consumer_secret, access_token, access_token_secret
@@ -39,7 +40,7 @@ def update_twitter():
     # Variable for tweets ago
     counter=0
     tweets_ago=[]
-    name=mentions["statuses"][0]["user_mentions"]["name"]
+    name=mentions["statuses"][0]["user"]["name"]
     command = mentions["statuses"][0]["text"]
     words = command.split("Analyze:")
     target_user = words[1].strip()
